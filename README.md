@@ -1,0 +1,2 @@
+# boostpayflexupdatelimit
+BOT_TOKEN = "TOKEN_BOT_KAMU" CHAT_ID   = "CHAT_ID_KAMU" SHEET_URL = "URL_WEB_APP_GOOGLE_SHEETS"
