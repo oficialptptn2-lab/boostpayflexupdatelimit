@@ -1,0 +1,15 @@
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const data = new FormData(this);
+
+  fetch("LINK_GOOGLE_SHEETS", { // <-- ganti dengan URL Web App Google Sheets
+    method: "POST",
+    body: data
+  })
+  .then(res => {
+    alert("Terima kasih, pesan Anda sudah terkirim.");
+    document.getElementById("form").reset();
+  })
+  .catch(err => alert("Gagal mengirim, coba lagi."));
+});
